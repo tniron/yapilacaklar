@@ -119,6 +119,7 @@
   const SUPABASE_URL = "https://mhwmloctjeeezllwsqhp.supabase.co";
   const SUPABASE_KEY = "sb_publishable_iyYGIGY_P_XkTUbPBMKu1w_en-RPfr3"; // istemci (publishable) anahtarı; güvenlik RLS ile sağlanır
   const OLD_LOCAL_KEY = "yapilacaklar-v1";
+  const SITE_URL = "https://tniron.github.io/yapilacaklar/Yapilacaklar.html"; // e-posta onay bağlantısı buraya döner
 
   const $ = (id) => document.getElementById(id);
   $("date").textContent = new Date().toLocaleDateString("tr-TR",
@@ -157,13 +158,26 @@
   $("signupBtn").onclick = async () => {
     if (!$("authForm").reportValidity()) return;
     const btn = $("signupBtn"); btn.disabled = true; showErr($("authMsg"), null);
-    const { data, error } = await db.auth.signUp({ email: $("authEmail").value.trim(), password: $("authPass").value });
+    const { data, error } = await db.auth.signUp({
+      email: $("authEmail").value.trim(), password: $("authPass").value,
+      options: { emailRedirectTo: SITE_URL },
+    });
     btn.disabled = false;
     if (error) return showErr($("authMsg"), trErr(error));
     if (!data.session) {
-      showOk($("authMsg"), "Hesap oluşturuldu. E-postanıza gelen onay bağlantısına tıklayın, sonra buradan giriş yapın.");
+      showOk($("authMsg"), "Hesap oluşturuldu. E-postanıza gelen onay bağlantısına tıklayın; bağlantı sizi bu sayfaya giriş yapmış olarak getirecek.");
     }
   };
+
+  // Onay bağlantısında hata varsa (ör. süresi dolmuş) kullanıcıya göster
+  (() => {
+    const p = new URLSearchParams(location.hash.slice(1) || location.search.slice(1));
+    const desc = p.get("error_description");
+    if (desc) {
+      showErr($("authMsg"), { message: "Onay bağlantısı geçersiz ya da süresi dolmuş. Tekrar giriş yapmayı ya da hesap oluşturmayı deneyin. (" + desc + ")" });
+      history.replaceState(null, "", location.pathname);
+    }
+  })();
 
   $("logout").onclick = () => db.auth.signOut();
 

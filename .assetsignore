@@ -1,0 +1,14 @@
+# Yayınlanmayacak dosyalar (Cloudflare Workers statik varlıkları)
+.git
+.gitignore
+.assetsignore
+.claude
+.DS_Store
+.supabase-db-password
+.Yapilacaklar-yerel-yedek.html
+.wrangler
+node_modules
+supabase
+wrangler.jsonc
+README.md
+index.html

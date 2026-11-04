@@ -83,7 +83,7 @@
   <section id="authView" hidden>
     <form class="auth" id="authForm">
       <h2>Giriş yap</h2>
-      <input type="email" id="authEmail" placeholder="E-posta" autocomplete="email" required>
+      <input type="text" id="authEmail" placeholder="Kullanıcı adı" autocomplete="username" autocapitalize="none" spellcheck="false" required>
       <input type="password" id="authPass" placeholder="Şifre (en az 6 karakter)" autocomplete="current-password" minlength="6" required>
       <div class="actions">
         <button type="submit" id="loginBtn">Giriş yap</button>
@@ -119,7 +119,6 @@
   const SUPABASE_URL = "https://mhwmloctjeeezllwsqhp.supabase.co";
   const SUPABASE_KEY = "sb_publishable_iyYGIGY_P_XkTUbPBMKu1w_en-RPfr3"; // istemci (publishable) anahtarı; güvenlik RLS ile sağlanır
   const OLD_LOCAL_KEY = "yapilacaklar-v1";
-  const SITE_URL = "https://tniron.github.io/yapilacaklar/Yapilacaklar.html"; // e-posta onay bağlantısı buraya döner
 
   const $ = (id) => document.getElementById(id);
   $("date").textContent = new Date().toLocaleDateString("tr-TR",
@@ -141,31 +140,47 @@
 
   // ---------- Giriş ----------
   const AUTH_TR = {
-    "Invalid login credentials": "E-posta veya şifre hatalı.",
-    "Email not confirmed": "E-posta adresiniz henüz onaylanmadı. Gelen kutunuzdaki onay bağlantısına tıklayın.",
-    "User already registered": "Bu e-posta ile zaten bir hesap var. Giriş yapmayı deneyin.",
+    "Invalid login credentials": "Kullanıcı adı veya şifre hatalı.",
+    "Email not confirmed": "Bu hesap henüz etkin değil. Supabase'de e-posta onayı açık olduğu için giriş yapılamıyor.",
+    "User already registered": "Bu kullanıcı adı alınmış. Başka bir kullanıcı adı deneyin ya da giriş yapın.",
   };
   const trErr = (e) => ({ message: AUTH_TR[e.message] || e.message });
 
+  // Kullanıcı adları Supabase'te asla e-posta almayan bir adrese çevrilir: ali -> ali@yapilacaklar.invalid
+  // (Daha önce e-postayla açılmış hesaplar için "@" içeren girişler olduğu gibi kullanılır.)
+  const USER_DOMAIN = "yapilacaklar.invalid";
+  const USERNAME_RE = /^[a-z0-9._-]{3,30}$/;
+  function toEmail(raw) {
+    const v = raw.trim().toLowerCase();
+    if (v.includes("@")) return v;
+    if (!USERNAME_RE.test(v)) {
+      throw new Error("Kullanıcı adı 3-30 karakter olmalı; yalnızca a-z, 0-9, nokta, alt çizgi ve tire kullanılabilir (Türkçe karakter yok).");
+    }
+    return `${v}@${USER_DOMAIN}`;
+  }
+  const displayName = (email) => email && email.endsWith("@" + USER_DOMAIN) ? email.slice(0, -USER_DOMAIN.length - 1) : email;
+
   $("authForm").onsubmit = async (e) => {
     e.preventDefault();
-    const btn = $("loginBtn"); btn.disabled = true; showErr($("authMsg"), null);
-    const { error } = await db.auth.signInWithPassword({ email: $("authEmail").value.trim(), password: $("authPass").value });
+    showErr($("authMsg"), null);
+    let email; try { email = toEmail($("authEmail").value); } catch (err) { return showErr($("authMsg"), err); }
+    const btn = $("loginBtn"); btn.disabled = true;
+    const { error } = await db.auth.signInWithPassword({ email, password: $("authPass").value });
     btn.disabled = false;
     if (error) showErr($("authMsg"), trErr(error));
   };
 
   $("signupBtn").onclick = async () => {
     if (!$("authForm").reportValidity()) return;
-    const btn = $("signupBtn"); btn.disabled = true; showErr($("authMsg"), null);
-    const { data, error } = await db.auth.signUp({
-      email: $("authEmail").value.trim(), password: $("authPass").value,
-      options: { emailRedirectTo: SITE_URL },
-    });
+    showErr($("authMsg"), null);
+    let email; try { email = toEmail($("authEmail").value); } catch (err) { return showErr($("authMsg"), err); }
+    if (!email.endsWith("@" + USER_DOMAIN)) return showErr($("authMsg"), { message: "Yeni hesap için e-posta değil, kullanıcı adı yazın." });
+    const btn = $("signupBtn"); btn.disabled = true;
+    const { data, error } = await db.auth.signUp({ email, password: $("authPass").value });
     btn.disabled = false;
     if (error) return showErr($("authMsg"), trErr(error));
     if (!data.session) {
-      showOk($("authMsg"), "Hesap oluşturuldu. E-postanıza gelen onay bağlantısına tıklayın; bağlantı sizi bu sayfaya giriş yapmış olarak getirecek.");
+      showErr($("authMsg"), { message: "Hesap oluşturuldu ama giriş açılamadı: Supabase'de e-posta onayı hâlâ açık. Kapatılınca bu kullanıcı adıyla giriş yapabilirsiniz." });
     }
   };
 
@@ -189,7 +204,7 @@
     $("appView").hidden = !user;
     $("who").hidden = !user;
     if (user) {
-      $("email").textContent = user.email;
+      $("email").textContent = displayName(user.email);
       setTimeout(async () => { await importOldLocal(); await load(); $("input").focus(); }, 0);
     } else {
       todos = []; $("authPass").value = ""; $("authEmail").focus();

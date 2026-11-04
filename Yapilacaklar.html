@@ -69,6 +69,10 @@
   .auth .actions { display: flex; gap: 8px; margin-top: 6px; }
   .auth .actions button { padding: 12px 18px; }
   .auth .actions .secondary { background: var(--accent-soft); color: var(--accent); }
+  .auth .sub { margin: -6px 0 14px; color: var(--muted); font-size: 14px; }
+  .auth #codeInput { font-size: 22px; letter-spacing: 6px; text-align: center; }
+  .auth .link { background: transparent; color: var(--muted); padding: 0; font-size: 14px; }
+  .auth .link:hover { color: var(--text); }
 </style>
 </head>
 <body>
@@ -83,13 +87,26 @@
   <section id="authView" hidden>
     <form class="auth" id="authForm">
       <h2>Giriş yap</h2>
-      <input type="text" id="authEmail" placeholder="Kullanıcı adı" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+      <input type="text" id="authEmail" placeholder="E-posta" autocomplete="username" inputmode="email" autocapitalize="none" spellcheck="false" required>
       <input type="password" id="authPass" placeholder="Şifre (en az 6 karakter)" autocomplete="current-password" minlength="6" required>
       <div class="actions">
         <button type="submit" id="loginBtn">Giriş yap</button>
         <button type="button" class="secondary" id="signupBtn">Hesap oluştur</button>
       </div>
       <div class="msg" id="authMsg"></div>
+    </form>
+
+    <!-- Onay kodu ekranı -->
+    <form class="auth" id="codeForm" hidden>
+      <h2>E-postanızı onaylayın</h2>
+      <p class="sub" id="codeInfo"></p>
+      <input type="text" id="codeInput" placeholder="Onay kodu" inputmode="numeric" autocomplete="one-time-code" maxlength="10" required>
+      <div class="actions">
+        <button type="submit" id="verifyBtn">Onayla</button>
+        <button type="button" class="secondary" id="resendBtn">Kodu tekrar gönder</button>
+      </div>
+      <div class="msg" id="codeMsg"></div>
+      <button type="button" class="link" id="backBtn">← Geri dön</button>
     </form>
   </section>
 
@@ -140,32 +157,60 @@
 
   // ---------- Giriş ----------
   const AUTH_TR = {
-    "Invalid login credentials": "Kullanıcı adı veya şifre hatalı.",
-    "Email not confirmed": "Bu hesap henüz etkin değil. Supabase'de e-posta onayı açık olduğu için giriş yapılamıyor.",
-    "User already registered": "Bu kullanıcı adı alınmış. Başka bir kullanıcı adı deneyin ya da giriş yapın.",
+    "Invalid login credentials": "E-posta veya şifre hatalı.",
+    "User already registered": "Bu e-posta ile zaten bir hesap var. Giriş yapmayı deneyin.",
+    "Token has expired or is invalid": "Kod hatalı ya da süresi dolmuş. Tekrar deneyin veya yeni kod isteyin.",
+    "Error sending confirmation email": "Onay e-postası gönderilemedi. Biraz sonra tekrar deneyin.",
+    "Unable to validate email address: invalid format": "Geçerli bir e-posta adresi yazın.",
   };
-  const trErr = (e) => ({ message: AUTH_TR[e.message] || e.message });
+  const trErr = (e) => {
+    if (/security purposes|rate limit/i.test(e.message)) return { message: "Çok sık kod istendi. Bir dakika bekleyip tekrar deneyin." };
+    return { message: AUTH_TR[e.message] || e.message };
+  };
 
-  // Kullanıcı adları Supabase'te asla e-posta almayan bir adrese çevrilir: ali -> ali@yapilacaklar.invalid
-  // (Daha önce e-postayla açılmış hesaplar için "@" içeren girişler olduğu gibi kullanılır.)
+  // Eski sürümde kullanıcı adıyla açılmış hesaplar: ali -> ali@yapilacaklar.invalid (yalnızca giriş için)
   const USER_DOMAIN = "yapilacaklar.invalid";
-  const USERNAME_RE = /^[a-z0-9._-]{3,30}$/;
-  function toEmail(raw) {
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  function loginEmail(raw) {
     const v = raw.trim().toLowerCase();
     if (v.includes("@")) return v;
-    if (!USERNAME_RE.test(v)) {
-      throw new Error("Kullanıcı adı 3-30 karakter olmalı; yalnızca a-z, 0-9, nokta, alt çizgi ve tire kullanılabilir (Türkçe karakter yok).");
-    }
-    return `${v}@${USER_DOMAIN}`;
+    if (/^[a-z0-9._-]{3,30}$/.test(v)) return `${v}@${USER_DOMAIN}`;
+    throw new Error("Geçerli bir e-posta adresi yazın.");
   }
   const displayName = (email) => email && email.endsWith("@" + USER_DOMAIN) ? email.slice(0, -USER_DOMAIN.length - 1) : email;
+
+  // ---------- Onay kodu ----------
+  let pendingEmail = null;
+  function showCodeStep(email, note) {
+    pendingEmail = email;
+    $("authForm").hidden = true; $("codeForm").hidden = false;
+    $("codeInfo").textContent = `${email} adresine bir onay kodu gönderdik. Kodu aşağıya yazın. (Gelen kutusunda yoksa spam klasörüne bakın.)`;
+    $("codeInput").value = "";
+    note ? showOk($("codeMsg"), note) : showErr($("codeMsg"), null);
+    $("codeInput").focus();
+  }
+  function showLoginStep() {
+    pendingEmail = null;
+    $("codeForm").hidden = true; $("authForm").hidden = false;
+    $("authEmail").focus();
+  }
+  async function sendCode(email) {
+    const { error } = await db.auth.resend({ type: "signup", email });
+    return error;
+  }
 
   $("authForm").onsubmit = async (e) => {
     e.preventDefault();
     showErr($("authMsg"), null);
-    let email; try { email = toEmail($("authEmail").value); } catch (err) { return showErr($("authMsg"), err); }
+    let email; try { email = loginEmail($("authEmail").value); } catch (err) { return showErr($("authMsg"), err); }
     const btn = $("loginBtn"); btn.disabled = true;
     const { error } = await db.auth.signInWithPassword({ email, password: $("authPass").value });
+    if (error && error.message === "Email not confirmed") {
+      // Hesap var ama onaylanmamış: yeni kod gönder ve kod ekranına geç
+      const err2 = await sendCode(email);
+      btn.disabled = false;
+      return err2 ? showErr($("authMsg"), trErr(err2)) : showCodeStep(email, "Hesabınız henüz onaylanmamış. Yeni bir kod gönderdik.");
+    }
     btn.disabled = false;
     if (error) showErr($("authMsg"), trErr(error));
   };
@@ -173,26 +218,38 @@
   $("signupBtn").onclick = async () => {
     if (!$("authForm").reportValidity()) return;
     showErr($("authMsg"), null);
-    let email; try { email = toEmail($("authEmail").value); } catch (err) { return showErr($("authMsg"), err); }
-    if (!email.endsWith("@" + USER_DOMAIN)) return showErr($("authMsg"), { message: "Yeni hesap için e-posta değil, kullanıcı adı yazın." });
+    const email = $("authEmail").value.trim().toLowerCase();
+    if (!EMAIL_RE.test(email)) return showErr($("authMsg"), { message: "Hesap oluşturmak için geçerli bir e-posta adresi yazın." });
     const btn = $("signupBtn"); btn.disabled = true;
     const { data, error } = await db.auth.signUp({ email, password: $("authPass").value });
     btn.disabled = false;
     if (error) return showErr($("authMsg"), trErr(error));
-    if (!data.session) {
-      showErr($("authMsg"), { message: "Hesap oluşturuldu ama giriş açılamadı: Supabase'de e-posta onayı hâlâ açık. Kapatılınca bu kullanıcı adıyla giriş yapabilirsiniz." });
+    // Aynı e-posta zaten kayıtlı ve onaylıysa Supabase güvenlik gereği hata vermez, boş "identities" döner
+    if (data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) {
+      return showErr($("authMsg"), { message: AUTH_TR["User already registered"] });
     }
+    if (!data.session) showCodeStep(email);
   };
 
-  // Onay bağlantısında hata varsa (ör. süresi dolmuş) kullanıcıya göster
-  (() => {
-    const p = new URLSearchParams(location.hash.slice(1) || location.search.slice(1));
-    const desc = p.get("error_description");
-    if (desc) {
-      showErr($("authMsg"), { message: "Onay bağlantısı geçersiz ya da süresi dolmuş. Tekrar giriş yapmayı ya da hesap oluşturmayı deneyin. (" + desc + ")" });
-      history.replaceState(null, "", location.pathname);
-    }
-  })();
+  $("codeForm").onsubmit = async (e) => {
+    e.preventDefault();
+    const token = $("codeInput").value.replace(/\s/g, "");
+    if (!/^\d{6,10}$/.test(token)) return showErr($("codeMsg"), { message: "Kod yalnızca rakamlardan oluşur." });
+    const btn = $("verifyBtn"); btn.disabled = true; showErr($("codeMsg"), null);
+    const { error } = await db.auth.verifyOtp({ email: pendingEmail, token, type: "signup" });
+    btn.disabled = false;
+    if (error) return showErr($("codeMsg"), trErr(error));
+    // Başarılı: onAuthStateChange görev ekranına geçirir
+  };
+
+  $("resendBtn").onclick = async () => {
+    const btn = $("resendBtn"); btn.disabled = true;
+    const error = await sendCode(pendingEmail);
+    setTimeout(() => { btn.disabled = false; }, 60000);
+    error ? (btn.disabled = false, showErr($("codeMsg"), trErr(error))) : showOk($("codeMsg"), "Yeni kod gönderildi.");
+  };
+
+  $("backBtn").onclick = showLoginStep;
 
   $("logout").onclick = () => db.auth.signOut();
 
@@ -204,6 +261,7 @@
     $("appView").hidden = !user;
     $("who").hidden = !user;
     if (user) {
+      $("codeForm").hidden = true; $("authForm").hidden = false; pendingEmail = null;
       $("email").textContent = displayName(user.email);
       setTimeout(async () => { await importOldLocal(); await load(); $("input").focus(); }, 0);
     } else {

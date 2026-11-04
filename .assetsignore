@@ -12,3 +12,5 @@ supabase
 wrangler.jsonc
 README.md
 index.html
+.env
+.env.*

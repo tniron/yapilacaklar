@@ -1,0 +1,12 @@
+# Gizli / yerel dosyalar
+.supabase-db-password
+.env
+.env.*
+supabase/.temp/
+supabase/.branches/
+
+# Bu projeye ait olmayan / yerel yedekler
+index.html
+.Yapilacaklar-yerel-yedek.html
+.DS_Store
+.claude/

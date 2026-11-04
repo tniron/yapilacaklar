@@ -164,7 +164,8 @@
     "Unable to validate email address: invalid format": "Geçerli bir e-posta adresi yazın.",
   };
   const trErr = (e) => {
-    if (/security purposes|rate limit/i.test(e.message)) return { message: "Çok sık kod istendi. Bir dakika bekleyip tekrar deneyin." };
+    if (/email rate limit/i.test(e.message)) return { message: "Son bir saatte çok fazla e-posta gönderildi. Biraz sonra tekrar deneyin." };
+    if (/security purposes|rate limit/i.test(e.message)) return { message: "Çok sık deneme yapıldı. Birkaç saniye bekleyip tekrar deneyin." };
     return { message: AUTH_TR[e.message] || e.message };
   };
 
@@ -245,8 +246,8 @@
   $("resendBtn").onclick = async () => {
     const btn = $("resendBtn"); btn.disabled = true;
     const error = await sendCode(pendingEmail);
-    setTimeout(() => { btn.disabled = false; }, 60000);
-    error ? (btn.disabled = false, showErr($("codeMsg"), trErr(error))) : showOk($("codeMsg"), "Yeni kod gönderildi.");
+    btn.disabled = false;
+    error ? showErr($("codeMsg"), trErr(error)) : showOk($("codeMsg"), "Yeni kod gönderildi.");
   };
 
   $("backBtn").onclick = showLoginStep;

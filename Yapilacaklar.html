@@ -2,135 +2,272 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Yapılacaklar</title>
+<meta name="theme-color" content="#0d2b4e">
+<link rel="preload" href="fonts/Barlow-Semi-Condensed-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/Barlow-500-latin.woff2" as="font" type="font/woff2" crossorigin>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <style>
+@font-face{font-family:'Barlow';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/Barlow-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/Barlow-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/Barlow-500-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/Barlow-500-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/Barlow-600-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Barlow';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/Barlow-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/Barlow-Semi-Condensed-600-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/Barlow-Semi-Condensed-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/Barlow-Semi-Condensed-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/Barlow-Semi-Condensed-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
   :root {
-    --bg: #f4f2ee; --card: #ffffff; --text: #1f1f1f; --muted: #8a8580;
-    --line: #e6e2dc; --accent: #d97757; --accent-soft: #f6e3da; --danger: #c0392b;
+    color-scheme: light dark;
+    --bar: #0d2b4e;          /* lacivert emaye tabela */
+    --bar-line: #24466e;
+    --bar-ink: #f6f7f4;
+    --bar-muted: #b4c4d6;
+    --ground: #f6f7f4;       /* tabela zemini */
+    --plate: #ffffff;        /* sıradaki satır / alanlar */
+    --ink: #1b1f24;
+    --muted: #535e6a;
+    --rule: #dde1e5;
+    --rule-strong: #c9cfd6;
+    --signal: #c8102e;       /* yalnızca sıradaki görev ve EKLE */
+    --signal-text: #c8102e;  /* kırmızı yazı (SIRADAKİ, hata) */
+    --signal-ink: #ffffff;
+    --fresh: #e3ebf4;        /* yeni tamamlanan satır */
+    --focus: #2f6fb6;
+    --cond: "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif;
+    --body: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --pad: 20px;
+    --addbar-h: 0px;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #1c1b1a; --card: #262523; --text: #ecebe8; --muted: #8f8a84;
-      --line: #383633; --accent: #e08a6c; --accent-soft: #3a2b25; --danger: #e5675a;
+      --bar: #0b2340; --bar-line: #1f3d61; --bar-muted: #9fb3c9;
+      --ground: #0b131d; --plate: #111d2b; --ink: #e8edf2; --muted: #9aa8b6;
+      --rule: #1d2a39; --rule-strong: #2a3a4d;
+      --signal: #cf2640; --signal-text: #ff6b7f; --fresh: #15304f; --focus: #7fb0e8;
     }
   }
+
   * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
   body {
-    margin: 0; background: var(--bg); color: var(--text);
-    font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    display: flex; justify-content: center; padding: 48px 16px;
+    margin: 0; min-height: 100vh; min-height: 100dvh;
+    background: var(--ground); color: var(--ink);
+    font: 500 17px/1.35 var(--body);
+    font-variant-numeric: tabular-nums;
+    caret-color: var(--ink);
+    scrollbar-color: var(--rule-strong) var(--ground);
+    padding-bottom: var(--addbar-h);
   }
-  main { width: 100%; max-width: 560px; }
+  ::selection { background: var(--bar); color: var(--bar-ink); }
   [hidden] { display: none !important; }
-  .top { display: flex; align-items: baseline; gap: 12px; }
-  h1 { font-size: 28px; margin: 0 0 4px; }
-  .who { margin-left: auto; color: var(--muted); font-size: 13px; text-align: right; }
-  .who button { background: transparent; color: var(--muted); padding: 0; font-size: 13px; text-decoration: underline; }
-  .date { color: var(--muted); margin-bottom: 24px; }
-  form.row { display: flex; gap: 8px; margin-bottom: 16px; }
-  input[type=text], input[type=email], input[type=password] {
-    flex: 1; width: 100%; padding: 12px 14px; font-size: 16px; border-radius: 10px;
-    border: 1px solid var(--line); background: var(--card); color: var(--text); outline: none;
+  .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  button, input { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .cond { font-family: var(--cond); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+  .wrap { width: 100%; max-width: 720px; margin: 0 auto; }
+
+  /* ---------- Lacivert başlık şeridi ---------- */
+  .bar { background: var(--bar); color: var(--bar-ink); padding-top: env(safe-area-inset-top); }
+  .bar .wrap { padding: 28px var(--pad) 0; }
+  .top { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding-bottom: 18px; }
+  h1 { margin: 0; font-family: var(--cond); font-weight: 700; font-size: 34px; line-height: 1; letter-spacing: .005em; }
+  .who { margin-top: 8px; font-size: 14px; color: var(--bar-muted); display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+  .who span { overflow-wrap: anywhere; }
+  .who button { background: none; border: 0; padding: 13px 6px; margin: -13px -6px; color: var(--bar-ink); text-decoration: underline; text-underline-offset: 3px; font-size: 14px; }
+  .left { text-align: right; line-height: 1; flex: none; }
+  .left b { display: block; font-family: var(--cond); font-weight: 700; font-size: 64px; line-height: .85; letter-spacing: -.01em; }
+  .left span { display: block; margin-top: 4px; font-size: 12px; color: var(--bar-muted); }
+
+  .tabs { display: flex; border-top: 1px solid var(--bar-line); margin: 0 calc(var(--pad) * -1); padding: 0 calc(var(--pad) - 4px); }
+  .tabs button {
+    flex: 1; background: none; border: 0; border-bottom: 3px solid transparent;
+    padding: 13px 4px 12px; color: var(--bar-muted); font-size: 15px; min-height: 48px;
   }
-  input:focus { border-color: var(--accent); }
-  button {
-    font: inherit; cursor: pointer; border: none; border-radius: 10px;
-    background: var(--accent); color: #fff; padding: 0 18px;
+  .tabs button i { font-style: normal; margin-left: 6px; font-weight: 600; opacity: .85; }
+  .tabs button[aria-pressed="true"] { color: var(--bar-ink); border-bottom-color: var(--bar-ink); }
+  .tabs button:hover { color: var(--bar-ink); }
+  .tabs button:focus-visible { outline-color: var(--bar-ink); outline-offset: -4px; }
+
+  /* ---------- Ekleme şeridi ---------- */
+  .add { background: var(--bar); border-top: 1px solid var(--bar-line); }
+  .add form { display: flex; gap: 10px; padding: 14px var(--pad) 16px; }
+  .field {
+    flex: 1; min-width: 0; height: 50px; border-radius: 6px; border: 1px solid transparent;
+    background: var(--ground); color: var(--ink); padding: 0 16px; font-size: 17px; font-weight: 500;
   }
-  button:disabled { opacity: .6; cursor: default; }
-  .filters { display: flex; gap: 6px; margin-bottom: 12px; align-items: center; }
-  .filters button { background: transparent; color: var(--muted); padding: 6px 12px; font-size: 14px; }
-  .filters button.active { background: var(--accent-soft); color: var(--accent); }
-  .filters .count { margin-left: auto; color: var(--muted); font-size: 14px; }
-  ul { list-style: none; margin: 0; padding: 0; background: var(--card);
-       border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
-  li { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-bottom: 1px solid var(--line); }
-  li:last-child { border-bottom: none; }
-  li input[type=checkbox] { width: 20px; height: 20px; accent-color: var(--accent); cursor: pointer; flex-shrink: 0; }
-  li .text { flex: 1; word-break: break-word; cursor: text; }
-  li.done .text { text-decoration: line-through; color: var(--muted); }
-  li .del { background: transparent; color: var(--muted); padding: 4px 8px; font-size: 18px; opacity: 0; }
-  li:hover .del { opacity: 1; }
-  li .del:hover { color: var(--danger); }
-  li .edit { flex: 1; padding: 4px 8px; font-size: 16px; }
-  .empty { padding: 32px; text-align: center; color: var(--muted); }
-  .footer { display: flex; justify-content: flex-end; margin-top: 12px; }
-  .footer button { background: transparent; color: var(--muted); font-size: 14px; padding: 6px 0; }
-  .footer button:hover { color: var(--danger); }
-  .hint { color: var(--muted); font-size: 13px; margin-top: 24px; text-align: center; }
-  .msg { font-size: 14px; margin: 8px 0 16px; min-height: 1em; }
-  .msg.err { color: var(--danger); }
-  .msg.ok { color: var(--accent); }
-  .auth { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 24px; }
-  .auth h2 { margin: 0 0 16px; font-size: 20px; }
-  .auth input { margin-bottom: 10px; }
-  .auth .actions { display: flex; gap: 8px; margin-top: 6px; }
-  .auth .actions button { padding: 12px 18px; }
-  .auth .actions .secondary { background: var(--accent-soft); color: var(--accent); }
-  .auth .sub { margin: -6px 0 14px; color: var(--muted); font-size: 14px; }
-  .auth #codeInput { font-size: 22px; letter-spacing: 6px; text-align: center; }
-  .auth .link { background: transparent; color: var(--muted); padding: 0; font-size: 14px; }
-  .auth .link:hover { color: var(--text); }
+  .field::placeholder { color: var(--muted); opacity: 1; }
+  .add .field:focus-visible { outline: 2px solid var(--bar-ink); outline-offset: 2px; }
+  .go {
+    flex: none; min-width: 96px; height: 50px; border: 0; border-radius: 6px;
+    background: var(--signal); color: var(--signal-ink); font-size: 17px; padding: 0 18px;
+  }
+  .go:hover { filter: brightness(1.08); }
+  .go:active { transform: translateY(1px); }
+  .add .msg { margin: -6px var(--pad) 12px; color: #ffd2d8; }
+  @media (max-width: 719px) {
+    .add { position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; padding-bottom: env(safe-area-inset-bottom); }
+    :root { --addbar-h: 82px; } /* JS ölçer; bu yalnızca ilk değer */
+  }
+
+  /* ---------- Tabela ---------- */
+  .board { padding-bottom: 28px; }
+  .cols, .row { display: grid; grid-template-columns: 44px 30px minmax(0, 1fr) 78px 40px; align-items: center; column-gap: 6px; padding: 0 calc(var(--pad) - 8px) 0 var(--pad); }
+  .cols { padding-top: 16px; padding-bottom: 8px; font-size: 12px; letter-spacing: .12em; color: var(--muted); border-bottom: 1px solid var(--rule-strong); }
+  .cols span:nth-child(4) { text-align: right; }
+  ol { list-style: none; margin: 0; padding: 0; }
+  .row { min-height: 58px; border-bottom: 1px solid var(--rule); }
+  .tick { position: relative; width: 44px; height: 44px; margin-left: -12px; display: grid; place-items: center; }
+  .tick input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+  .tick svg { width: 22px; height: 22px; border: 1.5px solid var(--rule-strong); border-radius: 4px; background: var(--plate); color: transparent; transition: background .15s, border-color .15s; }
+  .tick input:hover + svg { border-color: var(--ink); }
+  .tick input:focus-visible + svg { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .tick input:checked + svg { background: var(--bar); border-color: var(--bar); color: var(--bar-ink); }
+  @media (prefers-color-scheme: dark) { .tick input:checked + svg { background: var(--bar-ink); border-color: var(--bar-ink); color: var(--bar); } }
+  .no { font-family: var(--cond); font-weight: 600; font-size: 20px; color: var(--bar); }
+  @media (prefers-color-scheme: dark) { .no { color: var(--bar-muted); } }
+  .text { padding: 14px 6px 14px 0; overflow-wrap: anywhere; cursor: text; touch-action: manipulation; border-radius: 4px; }
+  .state { text-align: right; font-size: 13px; color: var(--muted); }
+  .del { width: 40px; height: 44px; border: 0; background: none; display: grid; place-items: center; color: var(--muted); border-radius: 6px; }
+  .del svg { width: 18px; height: 18px; }
+  .del:hover { color: var(--ink); }
+  @media (hover: hover) { .row .del { opacity: 0; } .row:hover .del, .row .del:focus-visible { opacity: 1; } }
+  .edit { width: 100%; height: 40px; padding: 0 10px; border: 1px solid var(--focus); border-radius: 6px; background: var(--plate); color: var(--ink); font-size: 17px; font-weight: 500; outline: none; }
+
+  .row.next { background: var(--plate); }
+  .row.next .no, .row.next .state { color: var(--signal-text); }
+  .row.done .text { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--rule-strong); text-decoration-thickness: 1.5px; }
+  .row.done .no { color: var(--muted); }
+  .row.done .state { color: var(--bar); }
+  @media (prefers-color-scheme: dark) { .row.done .state { color: var(--bar-muted); } }
+  .row.fresh { animation: arrive 2.6s cubic-bezier(.16, 1, .3, 1); }
+  @keyframes arrive {
+    0%, 60% { background: var(--fresh); }
+    100% { background: transparent; }
+  }
+  .row.departing .state { color: var(--bar); }
+  @media (prefers-color-scheme: dark) { .row.departing .state { color: var(--bar-muted); } }
+  .row.departing .text { color: var(--muted); }
+
+  .sec { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 22px var(--pad) 8px; font-size: 12px; letter-spacing: .12em; color: var(--muted); border-bottom: 1px solid var(--rule-strong); }
+  .sec .clear { background: none; border: 0; padding: 16px 10px; margin: -16px -10px; font-size: 12px; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+  .sec .clear:hover { color: var(--ink); }
+
+  .empty { padding: 40px var(--pad); color: var(--muted); }
+  .empty b { display: block; font-family: var(--cond); font-weight: 700; font-size: 22px; letter-spacing: .04em; color: var(--ink); margin-bottom: 6px; text-transform: uppercase; }
+  .hint { padding: 20px var(--pad) 0; font-size: 14px; color: var(--muted); }
+  .msg { font-size: 15px; min-height: 0; }
+  .msg:empty { display: none; }
+  .msg.err { color: var(--signal-text); }
+  .msg.ok { color: var(--ink); }
+  .loading { padding: 40px var(--pad); color: var(--muted); }
+
+  /* ---------- Giriş / onay kodu ---------- */
+  .auth { padding: 28px var(--pad) 40px; max-width: 460px; }
+  .auth h2 { margin: 0 0 6px; font-family: var(--cond); font-weight: 700; font-size: 24px; letter-spacing: .04em; text-transform: uppercase; }
+  .auth .sub { margin: 0 0 20px; color: var(--muted); font-size: 16px; line-height: 1.45; }
+  .auth label { display: block; margin: 14px 0 6px; font-size: 12px; letter-spacing: .12em; color: var(--muted); }
+  .auth .field { width: 100%; border-color: var(--rule-strong); background: var(--plate); }
+  .auth .field:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; border-color: var(--focus); }
+  #codeInput { font-family: var(--cond); font-weight: 700; font-size: 30px; letter-spacing: .3em; text-align: center; height: 62px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .btn { height: 50px; border-radius: 6px; padding: 0 20px; font-size: 16px; border: 1.5px solid var(--bar); }
+  .btn.primary { background: var(--bar); color: var(--bar-ink); }
+  .btn.secondary { background: transparent; color: var(--bar); }
+  @media (prefers-color-scheme: dark) { .btn { border-color: var(--bar-muted); } .btn.primary { background: var(--bar-ink); color: var(--bar); border-color: var(--bar-ink); } .btn.secondary { color: var(--ink); } }
+  .btn:disabled, .go:disabled { opacity: .55; cursor: default; }
+  .auth .msg { margin-top: 16px; }
+  .link { background: none; border: 0; padding: 10px 0; margin-top: 18px; font-size: 15px; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+  .link:hover { color: var(--ink); }
+
+  @media (min-width: 720px) {
+    :root { --pad: 28px; }
+    .bar .wrap { padding-top: 40px; }
+    h1 { font-size: 40px; }
+    .left b { font-size: 92px; }
+    .board { padding-bottom: 64px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .row.fresh { animation: none; background: var(--fresh); } * { transition: none !important; } }
 </style>
 </head>
 <body>
-<main>
-  <div class="top">
-    <h1>Yapılacaklar</h1>
-    <div class="who" id="who" hidden><span id="email"></span><br><button id="logout">Çıkış yap</button></div>
-  </div>
-  <div class="date" id="date"></div>
-
-  <!-- Giriş ekranı -->
-  <section id="authView" hidden>
-    <form class="auth" id="authForm">
-      <h2>Giriş yap</h2>
-      <input type="text" id="authEmail" placeholder="E-posta" autocomplete="username" inputmode="email" autocapitalize="none" spellcheck="false" required>
-      <input type="password" id="authPass" placeholder="Şifre (en az 6 karakter)" autocomplete="current-password" minlength="6" required>
-      <div class="actions">
-        <button type="submit" id="loginBtn">Giriş yap</button>
-        <button type="button" class="secondary" id="signupBtn">Hesap oluştur</button>
+<header class="bar">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <h1>Yapılacaklar</h1>
+        <div class="who" id="who" hidden><span id="email"></span><button id="logout" type="button">Çıkış yap</button></div>
       </div>
-      <div class="msg" id="authMsg"></div>
-    </form>
-
-    <!-- Onay kodu ekranı -->
-    <form class="auth" id="codeForm" hidden>
-      <h2>E-postanızı onaylayın</h2>
-      <p class="sub" id="codeInfo"></p>
-      <input type="text" id="codeInput" placeholder="Onay kodu" inputmode="numeric" autocomplete="one-time-code" maxlength="10" required>
-      <div class="actions">
-        <button type="submit" id="verifyBtn">Onayla</button>
-        <button type="button" class="secondary" id="resendBtn">Kodu tekrar gönder</button>
-      </div>
-      <div class="msg" id="codeMsg"></div>
-      <button type="button" class="link" id="backBtn">← Geri dön</button>
-    </form>
-  </section>
-
-  <!-- Görev ekranı -->
-  <section id="appView" hidden>
-    <form class="row" id="form">
-      <input type="text" id="input" placeholder="Yeni görev ekle…" autocomplete="off">
-      <button type="submit">Ekle</button>
-    </form>
-    <div class="msg err" id="appMsg"></div>
-
-    <div class="filters">
-      <button data-f="all" class="active">Tümü</button>
-      <button data-f="active">Aktif</button>
-      <button data-f="done">Tamamlanan</button>
-      <span class="count" id="count"></span>
+      <div class="left" id="leftBox" hidden aria-live="polite"><b id="leftNum">0</b><span class="cond">İş kaldı</span></div>
     </div>
+    <nav class="tabs" id="tabs" hidden aria-label="Görev filtresi">
+      <button type="button" class="cond" data-f="all" aria-pressed="true">Tümü<i id="nAll">0</i></button>
+      <button type="button" class="cond" data-f="active" aria-pressed="false">Aktif<i id="nActive">0</i></button>
+      <button type="button" class="cond" data-f="done" aria-pressed="false">Biten<i id="nDone">0</i></button>
+    </nav>
+  </div>
+</header>
 
-    <ul id="list"></ul>
+<!-- Giriş ekranı -->
+<main id="authView" class="wrap" hidden>
+  <form class="auth" id="authForm" novalidate>
+    <h2>Giriş yap</h2>
+    <p class="sub">Listeniz her cihazda aynı. Yeniyseniz e-posta ve şifre yazıp hesap oluşturun.</p>
+    <label class="cond" for="authEmail">E-posta</label>
+    <input class="field" type="text" id="authEmail" placeholder="ornek@eposta.com" autocomplete="username" inputmode="email" autocapitalize="none" spellcheck="false" required>
+    <label class="cond" for="authPass">Şifre</label>
+    <input class="field" type="password" id="authPass" placeholder="En az 6 karakter" autocomplete="current-password" minlength="6" required>
+    <div class="actions">
+      <button class="btn primary cond" type="submit" id="loginBtn">Giriş yap</button>
+      <button class="btn secondary cond" type="button" id="signupBtn">Hesap oluştur</button>
+    </div>
+    <div class="msg" id="authMsg" role="alert"></div>
+  </form>
 
-    <div class="footer"><button id="clear">Tamamlananları temizle</button></div>
-    <div class="hint">Düzenlemek için göreve çift tıklayın. Görevler Supabase'te saklanır.</div>
-  </section>
+  <!-- Onay kodu ekranı -->
+  <form class="auth" id="codeForm" hidden novalidate>
+    <h2>E-postanızı onaylayın</h2>
+    <p class="sub" id="codeInfo"></p>
+    <label class="cond" for="codeInput">Onay kodu</label>
+    <input class="field" type="text" id="codeInput" placeholder="––––––" inputmode="numeric" autocomplete="one-time-code" maxlength="10" required>
+    <div class="actions">
+      <button class="btn primary cond" type="submit" id="verifyBtn">Onayla</button>
+      <button class="btn secondary cond" type="button" id="resendBtn">Kodu tekrar gönder</button>
+    </div>
+    <div class="msg" id="codeMsg" role="alert"></div>
+    <button type="button" class="link" id="backBtn">Geri dön</button>
+  </form>
 </main>
+
+<!-- Görev ekranı -->
+<div id="appView" hidden>
+  <div class="add">
+    <form class="wrap" id="form">
+      <label for="input" class="sr-only">Yeni görev</label>
+      <input class="field" type="text" id="input" placeholder="Yeni görev yaz…" autocomplete="off" enterkeyhint="done" maxlength="1000">
+      <button class="go cond" type="submit">Ekle</button>
+    </form>
+    <div class="wrap"><div class="msg err" id="appMsg" role="alert"></div></div>
+  </div>
+  <main class="wrap board" id="board">
+    <div class="cols cond" id="cols" aria-hidden="true"><span></span><span>No</span><span>Görev</span><span>Durum</span><span></span></div>
+    <ol id="list"></ol>
+    <div id="doneBlock" hidden>
+      <div class="sec cond"><span>Tamamlananlar <span id="doneCount">0</span></span><button type="button" class="clear cond" id="clear">Temizle</button></div>
+      <ol id="doneList"></ol>
+    </div>
+    <div id="empty" class="empty" hidden></div>
+    <p class="hint" id="hint">Düzenlemek için göreve çift tıklayın ya da seçip Enter'a basın.</p>
+  </main>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+</svg>
 
 <script>
   const SUPABASE_URL = "https://mhwmloctjeeezllwsqhp.supabase.co";
@@ -138,12 +275,10 @@
   const OLD_LOCAL_KEY = "yapilacaklar-v1";
 
   const $ = (id) => document.getElementById(id);
-  $("date").textContent = new Date().toLocaleDateString("tr-TR",
-    { weekday: "long", day: "numeric", month: "long", year: "numeric" });
 
   if (!window.supabase) {
-    document.querySelector("main").insertAdjacentHTML("beforeend",
-      '<p class="msg err">Supabase kütüphanesi yüklenemedi. İnternet bağlantınızı kontrol edin.</p>');
+    document.body.insertAdjacentHTML("beforeend",
+      '<p class="msg err wrap" style="padding:20px">Supabase kütüphanesi yüklenemedi. İnternet bağlantınızı kontrol edip sayfayı yenileyin.</p>');
     throw new Error("supabase-js yüklenemedi");
   }
   const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -151,6 +286,16 @@
   let todos = [];
   let filter = "all";
   let user = null;
+  let loaded = false;
+  const fresh = new Set();
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  if (matchMedia("(hover: none)").matches) $("hint").textContent = "Düzenlemek için göreve çift dokunun.";
+  // Telefonda alttaki sabit ekleme şeridinin gerçek yüksekliği kadar boşluk bırak (hata mesajı çıkınca büyür)
+  const addBar = document.querySelector(".add");
+  new ResizeObserver(() => {
+    const fixed = getComputedStyle(addBar).position === "fixed";
+    document.documentElement.style.setProperty("--addbar-h", fixed ? addBar.offsetHeight + "px" : "0px");
+  }).observe(addBar);
 
   const showErr = (el, err) => { el.className = "msg err"; el.textContent = err ? (err.message || String(err)) : ""; };
   const showOk = (el, text) => { el.className = "msg ok"; el.textContent = text; };
@@ -166,6 +311,7 @@
   const trErr = (e) => {
     if (/email rate limit/i.test(e.message)) return { message: "Son bir saatte çok fazla e-posta gönderildi. Biraz sonra tekrar deneyin." };
     if (/security purposes|rate limit/i.test(e.message)) return { message: "Çok sık deneme yapıldı. Birkaç saniye bekleyip tekrar deneyin." };
+    if (/password/i.test(e.message) && /6/.test(e.message)) return { message: "Şifre en az 6 karakter olmalı." };
     return { message: AUTH_TR[e.message] || e.message };
   };
 
@@ -174,6 +320,7 @@
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   function loginEmail(raw) {
     const v = raw.trim().toLowerCase();
+    if (!v) throw new Error("E-posta adresinizi yazın.");
     if (v.includes("@")) return v;
     if (/^[a-z0-9._-]{3,30}$/.test(v)) return `${v}@${USER_DOMAIN}`;
     throw new Error("Geçerli bir e-posta adresi yazın.");
@@ -185,7 +332,7 @@
   function showCodeStep(email, note) {
     pendingEmail = email;
     $("authForm").hidden = true; $("codeForm").hidden = false;
-    $("codeInfo").textContent = `${email} adresine bir onay kodu gönderdik. Kodu aşağıya yazın. (Gelen kutusunda yoksa spam klasörüne bakın.)`;
+    $("codeInfo").textContent = `${email} adresine 6 haneli bir kod gönderdik. Gelen kutusunda yoksa spam klasörüne bakın.`;
     $("codeInput").value = "";
     note ? showOk($("codeMsg"), note) : showErr($("codeMsg"), null);
     $("codeInput").focus();
@@ -204,6 +351,7 @@
     e.preventDefault();
     showErr($("authMsg"), null);
     let email; try { email = loginEmail($("authEmail").value); } catch (err) { return showErr($("authMsg"), err); }
+    if (!$("authPass").value) return showErr($("authMsg"), { message: "Şifrenizi yazın." });
     const btn = $("loginBtn"); btn.disabled = true;
     const { error } = await db.auth.signInWithPassword({ email, password: $("authPass").value });
     if (error && error.message === "Email not confirmed") {
@@ -217,10 +365,10 @@
   };
 
   $("signupBtn").onclick = async () => {
-    if (!$("authForm").reportValidity()) return;
     showErr($("authMsg"), null);
     const email = $("authEmail").value.trim().toLowerCase();
     if (!EMAIL_RE.test(email)) return showErr($("authMsg"), { message: "Hesap oluşturmak için geçerli bir e-posta adresi yazın." });
+    if ($("authPass").value.length < 6) return showErr($("authMsg"), { message: "Şifre en az 6 karakter olmalı." });
     const btn = $("signupBtn"); btn.disabled = true;
     const { data, error } = await db.auth.signUp({ email, password: $("authPass").value });
     btn.disabled = false;
@@ -254,19 +402,26 @@
 
   $("logout").onclick = () => db.auth.signOut();
 
+  function setSignedIn(isIn) {
+    $("authView").hidden = isIn;
+    $("appView").hidden = !isIn;
+    $("who").hidden = !isIn;
+    $("leftBox").hidden = !isIn;
+    $("tabs").hidden = !isIn;
+  }
+
   db.auth.onAuthStateChange((_event, session) => {
     const newUser = session ? session.user : null;
     if ((newUser && newUser.id) === (user && user.id)) return;
     user = newUser;
-    $("authView").hidden = !!user;
-    $("appView").hidden = !user;
-    $("who").hidden = !user;
+    setSignedIn(!!user);
     if (user) {
       $("codeForm").hidden = true; $("authForm").hidden = false; pendingEmail = null;
       $("email").textContent = displayName(user.email);
-      setTimeout(async () => { await importOldLocal(); await load(); $("input").focus(); }, 0);
+      loaded = false; render();
+      setTimeout(async () => { await importOldLocal(); await load(); if (matchMedia("(min-width: 720px)").matches) $("input").focus(); }, 0);
     } else {
-      todos = []; $("authPass").value = ""; $("authEmail").focus();
+      todos = []; loaded = false; $("authPass").value = ""; $("authEmail").focus();
     }
   });
 
@@ -284,11 +439,12 @@
   }
 
   // ---------- Görevler ----------
+  // Sefer sırası: en eski bekleyen görev en üstte ("sıradaki"), yeni görev sona eklenir.
   async function load() {
-    const { data, error } = await db.from("todos").select("id,text,done,created_at").order("created_at", { ascending: false });
+    const { data, error } = await db.from("todos").select("id,text,done,created_at").order("created_at", { ascending: true });
     if (error) return showErr($("appMsg"), error);
     showErr($("appMsg"), null);
-    todos = data; render();
+    todos = data; loaded = true; render();
   }
 
   async function run(query) {
@@ -298,52 +454,110 @@
     return true;
   }
 
+  const pad = (n) => String(n).padStart(2, "0");
+  const icon = (id) => `<svg aria-hidden="true"><use href="#${id}"/></svg>`;
+
+  function rowFor(t, no, isNext) {
+    const li = document.createElement("li");
+    li.className = "row" + (t.done ? " done" : "") + (isNext ? " next" : "") + (fresh.has(t.id) ? " fresh" : "");
+    li.dataset.id = t.id;
+
+    const tick = document.createElement("label");
+    tick.className = "tick";
+    const cb = document.createElement("input");
+    cb.type = "checkbox"; cb.checked = t.done;
+    cb.setAttribute("aria-label", (t.done ? "Tamamlanmadı olarak işaretle: " : "Tamamlandı olarak işaretle: ") + t.text);
+    cb.onchange = async () => {
+      t.done = cb.checked;
+      const saving = run(db.from("todos").update({ done: t.done }).eq("id", t.id));
+      if (t.done) { fresh.add(t.id); setTimeout(() => fresh.delete(t.id), 2700); }
+      if (t.done && !reduceMotion.matches) {
+        // Sefer kalkıyor: durum yerinde TAMAM olur, sonra satır Tamamlananlar'daki yerine kayar
+        st.textContent = "Tamam"; li.classList.add("departing");
+        await new Promise(r => setTimeout(r, 350));
+        const before = li.getBoundingClientRect().top;
+        render();
+        const moved = document.querySelector(`.row[data-id="${t.id}"]`);
+        if (moved) {
+          const d = before - moved.getBoundingClientRect().top;
+          moved.animate([{ transform: `translateY(${d}px)` }, { transform: "translateY(0)" }], { duration: 520, easing: "cubic-bezier(.16, 1, .3, 1)" });
+        }
+      } else {
+        render();
+      }
+      await saving;
+    };
+    tick.append(cb);
+    tick.insertAdjacentHTML("beforeend", icon("i-check"));
+
+    const n = document.createElement("span");
+    n.className = "no"; n.textContent = pad(no);
+
+    const span = document.createElement("span");
+    span.className = "text"; span.textContent = t.text;
+    span.tabIndex = 0;
+    span.title = "Düzenlemek için çift tıklayın";
+    span.ondblclick = () => startEdit(li, span, t);
+    span.onkeydown = (e) => { if (e.key === "Enter" || e.key === "F2") { e.preventDefault(); startEdit(li, span, t); } };
+    // Telefonda çift dokunma: bazı tarayıcılar dblclick göndermediği için iki dokunuşu kendimiz yakalarız
+    let lastTap = 0;
+    span.addEventListener("touchend", (e) => {
+      const now = Date.now();
+      if (now - lastTap < 320) { e.preventDefault(); lastTap = 0; startEdit(li, span, t); }
+      else lastTap = now;
+    });
+
+    const st = document.createElement("span");
+    st.className = "state cond";
+    st.textContent = t.done ? "Tamam" : isNext ? "Sıradaki" : "Bekliyor";
+
+    const del = document.createElement("button");
+    del.type = "button"; del.className = "del";
+    del.setAttribute("aria-label", "Sil: " + t.text);
+    del.innerHTML = icon("i-x");
+    del.onclick = async () => {
+      todos = todos.filter(x => x !== t); render();
+      await run(db.from("todos").delete().eq("id", t.id));
+    };
+
+    li.append(tick, n, span, st, del);
+    return li;
+  }
+
   function render() {
-    const list = $("list");
-    list.innerHTML = "";
-    const shown = todos.filter(t => filter === "all" || (filter === "done" ? t.done : !t.done));
+    const active = todos.filter(t => !t.done);
+    const done = todos.filter(t => t.done);
 
-    if (!shown.length) {
-      const div = document.createElement("div");
-      div.className = "empty";
-      div.textContent = todos.length ? "Bu filtrede görev yok." : "Henüz görev yok. Yukarıdan ekleyin.";
-      list.appendChild(div);
-    }
+    $("leftNum").textContent = active.length;
+    $("nAll").textContent = todos.length;
+    $("nActive").textContent = active.length;
+    $("nDone").textContent = done.length;
+    $("doneCount").textContent = done.length;
 
-    for (const t of shown) {
-      const li = document.createElement("li");
-      if (t.done) li.classList.add("done");
+    const list = $("list"), doneList = $("doneList"), empty = $("empty");
+    list.innerHTML = ""; doneList.innerHTML = "";
 
-      const cb = document.createElement("input");
-      cb.type = "checkbox"; cb.checked = t.done;
-      cb.onchange = async () => {
-        t.done = cb.checked; render();
-        await run(db.from("todos").update({ done: t.done }).eq("id", t.id));
-      };
+    const showActive = filter !== "done";
+    const showDone = filter !== "active";
+    if (showActive) active.forEach((t, i) => list.appendChild(rowFor(t, i + 1, i === 0)));
+    if (showDone) done.forEach((t, i) => doneList.appendChild(rowFor(t, (showActive ? active.length : 0) + i + 1, false)));
+    $("doneBlock").hidden = !(showDone && done.length);
 
-      const span = document.createElement("span");
-      span.className = "text"; span.textContent = t.text;
-      span.ondblclick = () => startEdit(li, span, t);
-
-      const del = document.createElement("button");
-      del.className = "del"; del.title = "Sil"; del.textContent = "×";
-      del.onclick = async () => {
-        todos = todos.filter(x => x !== t); render();
-        await run(db.from("todos").delete().eq("id", t.id));
-      };
-
-      li.append(cb, span, del);
-      list.appendChild(li);
-    }
-
-    const left = todos.filter(t => !t.done).length;
-    $("count").textContent = `${left} görev kaldı`;
-    $("clear").style.visibility = todos.some(t => t.done) ? "visible" : "hidden";
+    let msg = "";
+    if (!loaded) msg = "<b>Liste yükleniyor</b>Görevleriniz getiriliyor…";
+    else if (!todos.length) msg = "<b>Henüz görev yok</b>İlk görevinizi " + (matchMedia("(min-width: 720px)").matches ? "yukarıdaki" : "alttaki") + " alana yazıp Ekle'ye basın.";
+    else if (filter === "active" && !active.length) msg = "<b>Bekleyen iş yok</b>Tüm görevler tamamlandı.";
+    else if (filter === "done" && !done.length) msg = "<b>Henüz biten yok</b>Tamamladığınız görevler burada listelenir.";
+    else if (filter === "all" && !active.length) msg = "<b>Bekleyen iş yok</b>Tüm görevler tamamlandı.";
+    empty.innerHTML = msg; empty.hidden = !msg;
+    $("cols").hidden = !(list.children.length || doneList.children.length);
   }
 
   function startEdit(li, span, t) {
+    if (span.parentNode !== li) return; // zaten düzenleniyor
     const inp = document.createElement("input");
-    inp.type = "text"; inp.className = "edit"; inp.value = t.text;
+    inp.type = "text"; inp.className = "edit"; inp.value = t.text; inp.maxLength = 1000;
+    inp.setAttribute("aria-label", "Görevi düzenle");
     li.replaceChild(inp, span);
     inp.focus(); inp.select();
     let finished = false;
@@ -370,18 +584,18 @@
   $("form").onsubmit = async (e) => {
     e.preventDefault();
     const v = $("input").value.trim();
-    if (!v) return;
+    if (!v) return $("input").focus();
     $("input").value = "";
     const { data, error } = await db.from("todos").insert({ text: v }).select("id,text,done,created_at").single();
     if (error) { $("input").value = v; return showErr($("appMsg"), error); }
     showErr($("appMsg"), null);
-    todos.unshift(data); render();
+    todos.push(data); render();
   };
 
-  document.querySelectorAll(".filters button").forEach(b => {
+  document.querySelectorAll(".tabs button").forEach(b => {
     b.onclick = () => {
       filter = b.dataset.f;
-      document.querySelectorAll(".filters button").forEach(x => x.classList.toggle("active", x === b));
+      document.querySelectorAll(".tabs button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
       render();
     };
   });
@@ -398,7 +612,7 @@
 
   // İlk açılış: oturum yoksa giriş ekranını göster
   db.auth.getSession().then(({ data }) => {
-    if (!data.session) { $("authView").hidden = false; $("authEmail").focus(); }
+    if (!data.session) { setSignedIn(false); $("authEmail").focus(); }
   });
 </script>
 </body>

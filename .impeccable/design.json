@@ -1,0 +1,456 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-09T18:44:03+00:00",
+  "title": "Design System: Yapılacaklar",
+  "extensions": {
+    "colorMeta": {
+      "bar": {
+        "role": "secondary",
+        "displayName": "Enamel Navy",
+        "canonical": "#0d2b4e",
+        "cssVar": "--bar",
+        "dark": "#0b2340",
+        "oklch": "oklch(28.8% 0.073 254.5)",
+        "tonalRamp": [
+          "#080b10",
+          "#1c2632",
+          "#31435a",
+          "#486385",
+          "#6885a8",
+          "#92a7c2",
+          "#becadb",
+          "#eaeff6"
+        ]
+      },
+      "bar-line": {
+        "role": "secondary",
+        "displayName": "Strip Seam",
+        "canonical": "#24466e",
+        "cssVar": "--bar-line",
+        "dark": "#1f3d61",
+        "oklch": "oklch(38.9% 0.079 253.8)",
+        "tonalRamp": [
+          "#080b10",
+          "#1b2633",
+          "#2f435c",
+          "#456388",
+          "#6585ab",
+          "#90a7c4",
+          "#bdcbdc",
+          "#e9eff7"
+        ]
+      },
+      "bar-ink": {
+        "role": "secondary",
+        "displayName": "Strip Chalk",
+        "canonical": "#f6f7f4",
+        "cssVar": "--bar-ink",
+        "dark": "#f6f7f4",
+        "oklch": "oklch(97.5% 0.004 121.6)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252524",
+          "#424241",
+          "#61615f",
+          "#828380",
+          "#a5a5a3",
+          "#c9c9c8",
+          "#eeeeee"
+        ]
+      },
+      "bar-muted": {
+        "role": "secondary",
+        "displayName": "Strip Haze",
+        "canonical": "#b4c4d6",
+        "cssVar": "--bar-muted",
+        "dark": "#9fb3c9",
+        "oklch": "oklch(81.4% 0.031 251.3)",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#21262a",
+          "#3b434c",
+          "#566370",
+          "#778492",
+          "#9da6b1",
+          "#c4cad0",
+          "#eceff1"
+        ]
+      },
+      "ground": {
+        "role": "neutral",
+        "displayName": "Board White",
+        "canonical": "#f6f7f4",
+        "cssVar": "--ground",
+        "dark": "#0b131d",
+        "oklch": "oklch(97.5% 0.004 121.6)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252524",
+          "#424241",
+          "#61615f",
+          "#828380",
+          "#a5a5a3",
+          "#c9c9c8",
+          "#eeeeee"
+        ]
+      },
+      "plate": {
+        "role": "neutral",
+        "displayName": "Plate White",
+        "canonical": "#ffffff",
+        "cssVar": "--plate",
+        "dark": "#111d2b",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Board Ink",
+        "canonical": "#1b1f24",
+        "cssVar": "--ink",
+        "dark": "#e8edf2",
+        "oklch": "oklch(23.7% 0.011 254.1)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242527",
+          "#3f4246",
+          "#5d6267",
+          "#7e8388",
+          "#a2a5a9",
+          "#c7c9cc",
+          "#eeeeef"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Faded Ink",
+        "canonical": "#535e6a",
+        "cssVar": "--muted",
+        "dark": "#9aa8b6",
+        "oklch": "oklch(47.7% 0.024 250.6)",
+        "tonalRamp": [
+          "#0a0b0d",
+          "#222529",
+          "#3c434a",
+          "#59626d",
+          "#79848f",
+          "#9ea6ae",
+          "#c5cacf",
+          "#edeff1"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#dde1e5",
+        "cssVar": "--rule",
+        "dark": "#1d2a39",
+        "oklch": "oklch(90.8% 0.007 247.9)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242526",
+          "#404244",
+          "#5f6265",
+          "#7f8386",
+          "#a3a5a8",
+          "#c8c9cb",
+          "#eeeeef"
+        ]
+      },
+      "rule-strong": {
+        "role": "neutral",
+        "displayName": "Column Rule",
+        "canonical": "#c9cfd6",
+        "cssVar": "--rule-strong",
+        "dark": "#2a3a4d",
+        "oklch": "oklch(85.2% 0.012 252.1)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242527",
+          "#3f4246",
+          "#5d6267",
+          "#7e8388",
+          "#a2a5aa",
+          "#c7c9cc",
+          "#eeeef0"
+        ]
+      },
+      "signal": {
+        "role": "primary",
+        "displayName": "Funnel Red",
+        "canonical": "#c8102e",
+        "cssVar": "--signal",
+        "dark": "#cf2640", "darkText": "#ff6b7f",
+        "oklch": "oklch(53.0% 0.207 22.3)",
+        "tonalRamp": [
+          "#160606",
+          "#431213",
+          "#781920",
+          "#b11d2d",
+          "#d9484e",
+          "#eb8280",
+          "#f7b6b3",
+          "#ffe7e5"
+        ]
+      },
+      "signal-ink": {
+        "role": "primary",
+        "displayName": "Signal Ink",
+        "canonical": "#ffffff",
+        "cssVar": "--signal-ink",
+        "dark": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "fresh": {
+        "role": "neutral",
+        "displayName": "Departed Blue",
+        "canonical": "#e3ebf4",
+        "cssVar": "--fresh",
+        "dark": "#15304f",
+        "oklch": "oklch(93.7% 0.015 251.2)",
+        "tonalRamp": [
+          "#0a0b0c",
+          "#232528",
+          "#3e4247",
+          "#5c6269",
+          "#7d838a",
+          "#a1a6ab",
+          "#c7c9cd",
+          "#edeef0"
+        ]
+      },
+      "focus": {
+        "role": "neutral",
+        "displayName": "Focus Blue",
+        "canonical": "#2f6fb6",
+        "cssVar": "--focus",
+        "dark": "#7fb0e8",
+        "oklch": "oklch(53.6% 0.129 253.3)",
+        "tonalRamp": [
+          "#060c13",
+          "#14263b",
+          "#20436b",
+          "#2d639f",
+          "#4f85c4",
+          "#82a8d7",
+          "#b4cce8",
+          "#e6f0fc"
+        ]
+      }
+    },
+    "colorModes": {
+      "strategy": "prefers-color-scheme",
+      "note": "All tokens are CSS custom properties on :root, redefined under @media (prefers-color-scheme: dark). Light values are the frontmatter; dark values are colorMeta.*.dark. Board elements that use bar as ink switch to bar-muted / bar-ink in dark."
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Remaining Count",
+        "purpose": "Giant remaining-task count in the header (64px phone, 92px at >=720px), captioned İŞ KALDI."
+      },
+      "headline": {
+        "displayName": "Product Name",
+        "purpose": "\"Yapılacaklar\" on the navy strip (34px phone, 40px at >=720px), sentence case."
+      },
+      "title": {
+        "displayName": "Auth Heading",
+        "purpose": "Uppercase auth headings; empty-state titles at 22px."
+      },
+      "body": {
+        "displayName": "Task Text",
+        "purpose": "Task text and inputs; tabular numerals on the whole body."
+      },
+      "body-small": {
+        "displayName": "Small Body",
+        "purpose": "Account line and edit hint."
+      },
+      "label": {
+        "displayName": "Signage Label",
+        "purpose": "Uppercase tabs, buttons (16-17px), status column (13px)."
+      },
+      "label-column": {
+        "displayName": "Column Head",
+        "purpose": "NO / GÖREV / DURUM, Tamamlananlar section head, form labels, İŞ KALDI caption."
+      },
+      "row-number": {
+        "displayName": "Row Number",
+        "purpose": "Zero-padded 01, 02...; navy at rest, red on the next row, muted when done."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-depart",
+        "value": "cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Row travel to Tamamlananlar and highlight fade."
+      },
+      {
+        "name": "depart-hold",
+        "value": "350ms",
+        "purpose": "Status reads TAMAM in place before the row moves."
+      },
+      {
+        "name": "depart-travel",
+        "value": "520ms",
+        "purpose": "FLIP translateY from old position into the Tamamlananlar section."
+      },
+      {
+        "name": "arrive-highlight",
+        "value": "2.6s (fresh held for 60%, then fades)",
+        "purpose": "Departed Blue highlight on the just-completed row."
+      },
+      {
+        "name": "control-transition",
+        "value": "150ms",
+        "purpose": "Checkbox fill and border changes."
+      },
+      {
+        "name": "double-tap-window",
+        "value": "320ms",
+        "purpose": "Touch double-tap to edit."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "No travel, no fade: highlight held; all transitions off."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "desktop",
+        "value": "720px",
+        "purpose": "Below: add strip fixed at bottom (height measured at runtime into --addbar-h), pad 20px. At/above: add strip under header, pad 28px, larger title and count."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button (EKLE)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The only red button: submits a new task from the add strip.",
+      "html": "<button class=\"ds-go\" type=\"button\" lang=\"tr\">Ekle</button>",
+      "css": ".ds-go{font-family:\"Barlow Semi Condensed\",\"Arial Narrow\",system-ui,sans-serif;font-weight:600;letter-spacing:.08em;text-transform:uppercase;min-width:96px;height:50px;padding:0 18px;border:0;border-radius:6px;background:var(--signal,#c8102e);color:var(--signal-ink,#fff);font-size:17px;cursor:pointer}.ds-go:hover{filter:brightness(1.08)}.ds-go:active{transform:translateY(1px)}.ds-go:focus-visible{outline:2px solid var(--focus,#2f6fb6);outline-offset:2px}.ds-go:disabled{opacity:.55;cursor:default}"
+    },
+    {
+      "name": "Solid Button",
+      "kind": "button",
+      "refersTo": "button-solid",
+      "description": "Auth primary action (GİRİŞ YAP, ONAYLA).",
+      "html": "<button class=\"ds-btn-solid\" type=\"button\" lang=\"tr\">Giriş yap</button>",
+      "css": ".ds-btn-solid{font-family:\"Barlow Semi Condensed\",\"Arial Narrow\",system-ui,sans-serif;font-weight:600;letter-spacing:.08em;text-transform:uppercase;height:50px;padding:0 20px;border-radius:6px;border:1.5px solid var(--bar,#0d2b4e);background:var(--bar,#0d2b4e);color:var(--bar-ink,#f6f7f4);font-size:16px;cursor:pointer}.ds-btn-solid:focus-visible{outline:2px solid var(--focus,#2f6fb6);outline-offset:2px}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Auth secondary action (HESAP OLUŞTUR, KODU TEKRAR GÖNDER).",
+      "html": "<button class=\"ds-btn-outline\" type=\"button\" lang=\"tr\">Hesap oluştur</button>",
+      "css": ".ds-btn-outline{font-family:\"Barlow Semi Condensed\",\"Arial Narrow\",system-ui,sans-serif;font-weight:600;letter-spacing:.08em;text-transform:uppercase;height:50px;padding:0 20px;border-radius:6px;border:1.5px solid var(--bar,#0d2b4e);background:transparent;color:var(--bar,#0d2b4e);font-size:16px;cursor:pointer}.ds-btn-outline:focus-visible{outline:2px solid var(--focus,#2f6fb6);outline-offset:2px}"
+    },
+    {
+      "name": "Add Strip",
+      "kind": "input",
+      "refersTo": "input-strip",
+      "description": "Navy strip with a board-white input slot and the red EKLE button; fixed to the bottom on phones.",
+      "html": "<form class=\"ds-add\" lang=\"tr\"><input class=\"ds-add-field\" placeholder=\"Yeni görev yaz…\" aria-label=\"Yeni görev\"><button class=\"ds-add-go\" type=\"button\">Ekle</button></form>",
+      "css": ".ds-add{display:flex;gap:10px;padding:14px 20px 16px;background:var(--bar,#0d2b4e);border-top:1px solid var(--bar-line,#24466e)}.ds-add-field{font-family:\"Barlow\",system-ui,-apple-system,\"Segoe UI\",sans-serif;font-weight:500;font-variant-numeric:tabular-nums;flex:1;min-width:0;height:50px;border-radius:6px;border:1px solid transparent;background:var(--ground,#f6f7f4);color:var(--ink,#1b1f24);padding:0 16px;font-size:17px}.ds-add-field::placeholder{color:var(--muted,#535e6a);opacity:1}.ds-add-field:focus-visible{outline:2px solid var(--bar-ink,#f6f7f4);outline-offset:2px}.ds-add-go{font-family:\"Barlow Semi Condensed\",\"Arial Narrow\",system-ui,sans-serif;font-weight:600;letter-spacing:.08em;text-transform:uppercase;min-width:96px;height:50px;padding:0 18px;border:0;border-radius:6px;background:var(--signal,#c8102e);color:var(--signal-ink,#fff);font-size:17px}.ds-add-go:hover{filter:brightness(1.08)}"
+    },
+    {
+      "name": "Form Field",
+      "kind": "input",
+      "refersTo": "input-form",
+      "description": "Auth screen input with its 12px signage label.",
+      "html": "<div lang=\"tr\"><label class=\"ds-label\" for=\"ds-email\">E-posta</label><input class=\"ds-field\" id=\"ds-email\" placeholder=\"ornek@eposta.com\"></div>",
+      "css": ".ds-label{font-family:\"Barlow Semi Condensed\",\"Arial Narrow\",system-ui,sans-serif;font-weight:600;letter-spacing:.08em;text-transform:uppercase;display:block;margin:0 0 6px;font-size:12px;letter-spacing:.12em;color:var(--muted,#535e6a)}.ds-field{font-family:\"Barlow\",system-ui,-apple-system,\"Segoe UI\",sans-serif;font-weight:500;font-variant-numeric:tabular-nums;width:100%;height:50px;border-radius:6px;border:1px solid var(--rule-strong,#c9cfd6);background:var(--plate,#fff);color:var(--ink,#1b1f24);padding:0 16px;font-size:17px}.ds-field:focus-visible{outline:2px solid var(--focus,#2f6fb6);outline-offset:1px;border-color:var(--focus,#2f6fb6)}"
+    },
+    {
+      "name": "Header Strip with Filter Tabs",
+      "kind": "nav",
+      "refersTo": "filter-tab",
+      "description": "Navy enamel header: product name, giant remaining count, counted TÜMÜ/AKTİF/BİTEN tabs.",
+      "html": "<header class=\"ds-bar\" lang=\"tr\"><div class=\"ds-top\"><h1 class=\"ds-h1\">Yapılacaklar</h1><div class=\"ds-left\"><b>3</b><span>İş kaldı</span></div></div><nav class=\"ds-tabs\"><button aria-pressed=\"true\">Tümü<i>5</i></button><button aria-pressed=\"false\">Aktif<i>3</i></button><button aria-pressed=\"false\">Biten<i>2</i></button></nav></header>",
+      "css": ".ds-bar{background:var(--bar,#0d2b4e);color:var(--bar-ink,#f6f7f4);padding:28px 20px 0;font-variant-numeric:tabular-nums}.ds-top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding-bottom:18px}.ds-h1{margin:0;font-family:\"Barlow Semi Condensed\",\"Arial Narrow\",sans-serif;font-weight:700;font-size:34px;line-height:1}.ds-left{text-align:right;line-height:1}.ds-left b{display:block;font-family:\"Barlow Semi Condensed\",\"Arial Narrow\",sans-serif;font-weight:700;font-size:64px;line-height:.85;letter-spacing:-.01em}.ds-left span{font-family:\"Barlow Semi Condensed\",\"Arial Narrow\",system-ui,sans-serif;font-weight:600;letter-spacing:.08em;text-transform:uppercase;display:block;margin-top:4px;font-size:12px;color:var(--bar-muted,#b4c4d6)}.ds-tabs{display:flex;border-top:1px solid var(--bar-line,#24466e);margin:0 -20px;padding:0 16px}.ds-tabs button{font-family:\"Barlow Semi Condensed\",\"Arial Narrow\",system-ui,sans-serif;font-weight:600;letter-spacing:.08em;text-transform:uppercase;flex:1;background:none;border:0;border-bottom:3px solid transparent;padding:13px 4px 12px;min-height:48px;color:var(--bar-muted,#b4c4d6);font-size:15px;cursor:pointer}.ds-tabs button i{font-style:normal;margin-left:6px;opacity:.85}.ds-tabs button[aria-pressed=\"true\"]{color:var(--bar-ink,#f6f7f4);border-bottom-color:var(--bar-ink,#f6f7f4)}.ds-tabs button:hover{color:var(--bar-ink,#f6f7f4)}.ds-tabs button:focus-visible{outline:2px solid var(--bar-ink,#f6f7f4);outline-offset:-4px}"
+    },
+    {
+      "name": "Departure Board",
+      "kind": "custom",
+      "refersTo": "board-row",
+      "description": "Column heads and rows: the next row (red 01 SIRADAKİ on plate), a waiting row, and a just-departed TAMAM row with the fresh highlight.",
+      "html": "<div class=\"ds-board\" lang=\"tr\"><div class=\"ds-cols\"><span></span><span>No</span><span>Görev</span><span>Durum</span><span></span></div><div class=\"ds-row ds-next\"><label class=\"ds-tick\"><input type=\"checkbox\" aria-label=\"Tamamlandı olarak işaretle\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12.5l4.2 4.2L19 7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></label><span class=\"ds-no\">01</span><span class=\"ds-text\" tabindex=\"0\">Örnek görev: faturayı öde</span><span class=\"ds-state\">Sıradaki</span><button class=\"ds-del\" aria-label=\"Sil\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></button></div><div class=\"ds-row\"><label class=\"ds-tick\"><input type=\"checkbox\" aria-label=\"Tamamlandı olarak işaretle\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12.5l4.2 4.2L19 7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></label><span class=\"ds-no\">02</span><span class=\"ds-text\" tabindex=\"0\">Örnek görev: market</span><span class=\"ds-state\">Bekliyor</span><button class=\"ds-del\" aria-label=\"Sil\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></button></div><div class=\"ds-sec\"><span>Tamamlananlar 1</span><button class=\"ds-clear\">Temizle</button></div><div class=\"ds-row ds-done ds-fresh\"><label class=\"ds-tick\"><input type=\"checkbox\" checked aria-label=\"Tamamlanmadı olarak işaretle\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12.5l4.2 4.2L19 7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></label><span class=\"ds-no\">03</span><span class=\"ds-text\" tabindex=\"0\">Örnek görev: e-posta yanıtla</span><span class=\"ds-state\">Tamam</span><button class=\"ds-del\" aria-label=\"Sil\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></button></div></div>",
+      "css": ".ds-board{font-family:\"Barlow\",system-ui,-apple-system,\"Segoe UI\",sans-serif;font-weight:500;font-variant-numeric:tabular-nums;background:var(--ground,#f6f7f4);color:var(--ink,#1b1f24);font-size:17px;line-height:1.35}.ds-cols,.ds-row{display:grid;grid-template-columns:44px 30px minmax(0,1fr) 78px 40px;align-items:center;column-gap:6px;padding:0 12px 0 20px}.ds-cols,.ds-sec,.ds-state,.ds-clear,.ds-no{font-family:\"Barlow Semi Condensed\",\"Arial Narrow\",sans-serif;font-weight:600;letter-spacing:.08em;text-transform:uppercase}.ds-cols{padding-top:16px;padding-bottom:8px;font-size:12px;letter-spacing:.12em;color:var(--muted,#535e6a);border-bottom:1px solid var(--rule-strong,#c9cfd6)}.ds-cols span:nth-child(4){text-align:right}.ds-row{min-height:58px;border-bottom:1px solid var(--rule,#dde1e5)}.ds-tick{position:relative;width:44px;height:44px;margin-left:-12px;display:grid;place-items:center}.ds-tick input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}.ds-tick svg{width:22px;height:22px;border:1.5px solid var(--rule-strong,#c9cfd6);border-radius:4px;background:var(--plate,#fff);color:transparent;transition:background .15s,border-color .15s}.ds-tick input:hover+svg{border-color:var(--ink,#1b1f24)}.ds-tick input:focus-visible+svg{outline:2px solid var(--focus,#2f6fb6);outline-offset:2px}.ds-tick input:checked+svg{background:var(--bar,#0d2b4e);border-color:var(--bar,#0d2b4e);color:var(--bar-ink,#f6f7f4)}.ds-no{font-size:20px;color:var(--bar,#0d2b4e)}.ds-text{padding:14px 6px 14px 0;border-radius:4px;cursor:text}.ds-text:focus-visible{outline:2px solid var(--focus,#2f6fb6);outline-offset:2px}.ds-state{text-align:right;font-size:13px;color:var(--muted,#535e6a)}.ds-del{width:40px;height:44px;border:0;background:none;display:grid;place-items:center;color:var(--muted,#535e6a);border-radius:6px;cursor:pointer}.ds-del svg{width:18px;height:18px}.ds-del:hover{color:var(--ink,#1b1f24)}.ds-next{background:var(--plate,#fff)}.ds-next .ds-no,.ds-next .ds-state{color:var(--signal,#c8102e)}.ds-done .ds-text{color:var(--muted,#535e6a);text-decoration:line-through;text-decoration-color:var(--rule-strong,#c9cfd6);text-decoration-thickness:1.5px}.ds-done .ds-no{color:var(--muted,#535e6a)}.ds-done .ds-state{color:var(--bar,#0d2b4e)}.ds-fresh{background:var(--fresh,#e3ebf4)}.ds-sec{display:flex;align-items:baseline;justify-content:space-between;padding:22px 20px 8px;font-size:12px;letter-spacing:.12em;color:var(--muted,#535e6a);border-bottom:1px solid var(--rule-strong,#c9cfd6)}.ds-clear{background:none;border:0;padding:0;font-size:12px;color:var(--muted,#535e6a);text-decoration:underline;text-underline-offset:3px;cursor:pointer}.ds-clear:hover{color:var(--ink,#1b1f24)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "İskele",
+    "overview": "The list is a departure board, not a stack of cards. A navy enamel header strip carries the product name and, at the right, a giant count of what is left; under it sits an off-white board of numbered rows in three columns (NO / GÖREV / DURUM). One row at a time is the next departure and is the only thing on the board that turns red. When a task is done its status reads TAMAM where it stands, then the row departs down into the Tamamlananlar section and stays briefly lit there, the way a board holds a just-departed sailing.\n\nDensity is that of signage: condensed uppercase labels, tabular figures everywhere, generous 58px rows, hairline rules between them. The surface is flat; separation is drawn with 1px lines, never with shadows or floating cards. The rejected default is the soft white card with round checkboxes.\n\nLight and dark follow the system theme (`prefers-color-scheme`); every color token is redefined for dark, the board keeps its structure, and the navy strip stays navy.",
+    "keyCharacteristics": [
+      "Navy enamel strip over an off-white board; red reserved for the single next task and the EKLE button.",
+      "Barlow Semi Condensed uppercase for signage (labels, numbers, statuses, buttons); Barlow for the task text.",
+      "Tabular numerals throughout; zero-padded row numbers (01, 02, ...).",
+      "Flat: 1px rules, 6px corners, no shadows.",
+      "Signature motion: TAMAM in place, then the row travels to Tamamlananlar and holds a fading highlight."
+    ],
+    "rules": [
+      {
+        "name": "The One Departure Rule",
+        "body": "Red marks exactly one task (01, SIRADAKİ) and the EKLE button. Hover states, the caret, focus, secondary links and tabs use ink or navy, never red. Error text is the only other red.",
+        "section": "colors"
+      },
+      {
+        "name": "The Enamel Strip Rule",
+        "body": "Chrome lives on navy (`bar`); content lives on the off-white board. Do not tint the board with navy panels or put the list on the strip.",
+        "section": "colors"
+      },
+      {
+        "name": "The Signage Case Rule",
+        "body": "Uppercase is for signage (labels, tabs, statuses, buttons, column heads) set in Barlow Semi Condensed. Task text, the product name and explanatory copy stay in sentence case Barlow.",
+        "section": "typography"
+      },
+      {
+        "name": "The Dotted İ Rule",
+        "body": "Uppercase is produced by `text-transform` and depends on `<html lang=\"tr\">` so i becomes İ (SIRADAKİ, İŞ KALDI). Never hard-code uppercase strings or drop the language attribute.",
+        "section": "typography"
+      },
+      {
+        "name": "The Hairline Rule",
+        "body": "Separation is a 1px line. No box-shadow, no floating cards, no stacked surfaces.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do reserve `signal` red for the single next task and the EKLE button; error text is the only other use.",
+      "Do separate with 1px rules (`rule`, `rule-strong`, `bar-line`) and keep every surface flat.",
+      "Do set signage in Barlow Semi Condensed uppercase with 0.08em tracking (0.12em at 12px) and keep tabular figures.",
+      "Do keep corners at 6px (4px for the checkbox face).",
+      "Do keep touch targets at least 44px and every task keyboard-editable (Enter / F2).",
+      "Do redefine tokens for dark mode via `prefers-color-scheme` rather than adding a manual toggle.",
+      "Do keep UI strings in Turkish and `lang=\"tr\"` on the document."
+    ],
+    "donts": [
+      "Don't use red for hover, focus, caret, tabs, links or decorative accents.",
+      "Don't add box-shadows, floating cards or elevated panels.",
+      "Don't use round checkboxes or a white-card list; the board is rows and rules.",
+      "Don't use glyph characters for icons; use inline SVG.",
+      "Don't add eyebrow or kicker labels above headings; uppercase signage is for functional labels only."
+    ]
+  }
+}

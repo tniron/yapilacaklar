@@ -14,3 +14,8 @@ README.md
 index.html
 .env
 .env.*
+
+# Tasarım kayıtları (yayınlanmaz)
+PRODUCT.md
+DESIGN.md
+.impeccable
